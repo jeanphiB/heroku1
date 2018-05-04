@@ -1,7 +1,10 @@
 const PG = require("pg");
 
 function getCategories(request, result) {
-  const client = new PG.Client();
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    //ssl: true,
+  });
   client.connect();
   client.query("SELECT * FROM categories", [])
     .then((dbresult) => {

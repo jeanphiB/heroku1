@@ -1,0 +1,30 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-6">
+      <table class="table  table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Categories</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td>
+              <a href="category/{{row.id}}">{{row.label}}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>
+{% endblock %}

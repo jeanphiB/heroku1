@@ -1,0 +1,36 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-4">
+      <img class="img-thumbnail" src="https://www.decathlon.fr/media/{{product.image_path}}" alt="{{product.title}}">
+    </div>
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-title">{{product.title}}</h4>
+          <h5>{{product.min_price}} €</h5>
+          <p>
+            {{product.rating}}&nbsp;<span class="rating" data-default-rating="{{product.rating}}" disabled></span>
+          </p>
+          <p class="card-text"><small>{{product.description}}<small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/script/SimpleStarRating.js"></script>
+<script>
+  let ratings = document.getElementsByClassName('rating');
+  for (let i = 0; i < ratings.length; i++) {
+    let r = new SimpleStarRating(ratings[i]);
+
+    ratings[i].addEventListener('rate', function(e) {
+      console.log('Rating: ' + e.detail);
+    });
+  }
+</script>
+{% endblock %}

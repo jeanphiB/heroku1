@@ -1,9 +1,23 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const nunjucks = require("nunjucks");
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+const getCategories = require("./handlers/get_categories");
+const getCategory = require("./handlers/get_category");
+const getProduct = require("./handlers/get_product");
+
+const app = express();
+app.use(express.static("public"));
+app.set("views", __dirname + "/views");
+app.set("view engine", "njk");
+
+nunjucks.configure("views", {
+  autoescape: true,
+  express: app
+});
+
+app.get("/product/:id", getProduct);
+app.get("/category/:id", getCategory);
+app.get("/", getCategories);
 
 const port = process.env.PORT || 3000;
 app.listen(port, function () {

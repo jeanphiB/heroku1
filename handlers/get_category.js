@@ -6,7 +6,7 @@ function getCategories(request, result) {
     //ssl: true,
   });
   client.connect();
-  client.query("SELECT c.label, p.* FROM products_categories pc INNER JOIN products p ON pc.product_id = p.id INNER JOIN categories c ON pc.category_id = c.id WHERE pc.category_id=$1::uuid", [request.params.id])
+  client.query("SELECT c.label, p.* FROM category_products cp INNER JOIN products p ON cp.product_id = p.id INNER JOIN categories c ON cp.category_id = c.id WHERE cp.category_id=$1::uuid", [request.params.id])
     .then((dbresult) => {
       client.end();
       if (dbresult.rows.length === 0) {
